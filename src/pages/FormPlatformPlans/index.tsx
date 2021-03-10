@@ -2,11 +2,13 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 
 import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import api from '../../services/apiConnection';
 
 import Button from '../../components/Button';
-import { Container, FormPlatform } from './styles';
+import { Container, FormPlatform, RadioOptions } from './styles';
 
 import {
   ParamsAttribute,
@@ -41,23 +43,42 @@ const FormPlatformPlans: React.FC = () => {
   return (
     <Container>
       <FormPlatform>
-        <div>
+        <RadioGroup>
           {platformPlans?.map((plat) => (
-            <>
+            <RadioOptions>
               <FormControlLabel
-                key={plat.sku}
                 control={<Radio />}
+                value={plat.sku}
                 label={plat.aparelho ? plat.aparelho.nome : plat.sku}
                 onClick={() => {
                   handleUserChoose(plat);
                 }}
               />
-              <span>
-                <small>{plat.franquia}</small>
-              </span>
-            </>
+              <div>
+                <span>
+                  <p>Franquia:</p> <p>{plat.franquia}</p>
+                </span>
+                <span>
+                  <p>Valor:</p> <p> {` R$:${plat.valor}`}</p>
+                </span>
+                {plat.aparelho ? (
+                  <>
+                    <span>
+                      <p>Valor do Material: </p>{' '}
+                      <p> {` R$:${plat.aparelho.valor}`}</p>
+                    </span>
+                    {plat.aparelho.valorParcela ? (
+                      <span>
+                        <p>Parcelas: </p>{' '}
+                        <p> {` R$:${plat.aparelho.valorParcela}`}</p>
+                      </span>
+                    ) : null}
+                  </>
+                ) : null}
+              </div>
+            </RadioOptions>
           ))}
-        </div>
+        </RadioGroup>
       </FormPlatform>
       {!userChoose ? (
         <Button disabled>Próximo</Button>

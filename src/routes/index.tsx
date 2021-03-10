@@ -13,7 +13,7 @@ const Router: React.FC = () => {
         path="/FormPlatformPlans/:planName"
         component={FormPlatformPlans}
       />
-      <Route path="/UserForm/:userData" component={UserForm} />
+      <Route path="/UserForm" component={UserForm} />
     </Switch>
   );
 };

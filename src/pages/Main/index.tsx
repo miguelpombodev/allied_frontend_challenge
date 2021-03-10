@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+
 import api from '../../services/apiConnection';
 
 import Button from '../../components/Button';
 
-import { Container, FormPlatform } from './styles';
+import { Container, FormPlatform, RadioOptions } from './styles';
 
 import { PlatformsAPIData, PlatformsAttributes } from './interfacesMain';
 
@@ -31,23 +34,25 @@ const Main: React.FC = () => {
   return (
     <Container>
       <FormPlatform>
-        <div>
+        <RadioGroup>
           {platformsOptions?.map((plat) => (
-            <>
+            <RadioOptions>
               <FormControlLabel
-                key={plat.sku}
+                value={plat.sku}
                 control={<Radio />}
                 label={plat.nome}
                 onClick={() => {
                   handleUserChoose(plat.sku);
                 }}
               />
-              <span>
-                <small>{plat.descricao}</small>
-              </span>
-            </>
+              <div>
+                <span>
+                  <p>{plat.descricao}</p>
+                </span>
+              </div>
+            </RadioOptions>
           ))}
-        </div>
+        </RadioGroup>
       </FormPlatform>
       {!userChoose ? (
         <Button disabled>Próximo</Button>

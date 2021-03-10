@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useFormik, FormikProvider } from 'formik';
 import { useLocation } from 'react-router-dom';
-import * as Yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -10,13 +9,7 @@ import { Container, FormPlatform, ErrorMessage } from './styles';
 
 import { UserData, Values, UserChooseData } from './interfacesUserForm';
 
-const schema = Yup.object().shape({
-  nomeUsuario: Yup.string().required(),
-  emailUsuario: Yup.string().required(),
-  dtNascUsuario: Yup.string().required(),
-  cpfUsuario: Yup.string().required().max(11),
-  telefoneUsuario: Yup.string().required(),
-});
+import schema from './yupSchema';
 
 const UserForm: React.FC = () => {
   const [userData, setUserData] = useState<UserData>();
