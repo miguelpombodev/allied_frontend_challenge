@@ -24,6 +24,15 @@
     "prettier"
   ],
   "rules": {
+    "jsx-a11y/label-has-associated-control": [
+      2,
+      {
+        "controlComponents": [
+          "Field"
+        ],
+        "assert": "htmlFor"
+      }
+    ],
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "react/prop-types": [

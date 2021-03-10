@@ -1,9 +1,20 @@
-import React from 'react';
-import Input from '@material-ui/core/Input';
-import { InputBaseProps } from '@material-ui/core/InputBase';
+import React, { InputHTMLAttributes } from 'react';
+import { FieldAttributes, FieldConfig } from 'formik';
 
-const InputComponent: React.FC<InputBaseProps> = ({ ...rest }) => {
-  return <Input {...rest} />;
+import { Input } from './styles';
+
+interface InputProps
+  extends FieldConfig<InputHTMLAttributes<HTMLInputElement>> {
+  type: string;
+  placeholder: string;
+}
+
+const InputComponent: React.FC<InputProps> = ({
+  type,
+  placeholder,
+  ...rest
+}) => {
+  return <Input type={type} placeholder={placeholder} {...rest} />;
 };
 
 export default InputComponent;

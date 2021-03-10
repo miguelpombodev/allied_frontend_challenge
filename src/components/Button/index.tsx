@@ -1,8 +1,21 @@
-import React from 'react';
-import Button, { ButtonProps } from '@material-ui/core/Button';
+import React, { ButtonHTMLAttributes } from 'react';
 
-const ButtonComponent: React.FC<ButtonProps> = ({ children }) => {
-  return <Button>{children}</Button>;
+import { Button } from './styles';
+
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  disabled: boolean;
+}
+
+const ButtonComponent: React.FC<ButtonProps> = ({
+  disabled,
+  children,
+  ...rest
+}) => {
+  return (
+    <Button type="button" disabled={disabled} {...rest}>
+      {children}
+    </Button>
+  );
 };
 
 export default ButtonComponent;

@@ -13,7 +13,7 @@ import {
   PlatformPlansAPIData,
   PlatformsPlansAttributes,
   UserChoose,
-} from './interfaceFormPlatformPlans';
+} from './interfacesFormPlatformPlans';
 
 const FormPlatformPlans: React.FC = () => {
   const [platformPlans, setPlatformPlans] = useState<
@@ -60,9 +60,7 @@ const FormPlatformPlans: React.FC = () => {
         </div>
       </FormPlatform>
       {!userChoose ? (
-        <Button variant="contained" disabled>
-          Próximo
-        </Button>
+        <Button disabled>Próximo</Button>
       ) : (
         <Link
           to={{
@@ -70,9 +68,7 @@ const FormPlatformPlans: React.FC = () => {
             state: userChoose,
           }}
         >
-          <Button variant="contained" color="secondary">
-            Próximo
-          </Button>
+          <Button disabled={false}>Próximo</Button>
         </Link>
       )}
     </Container>

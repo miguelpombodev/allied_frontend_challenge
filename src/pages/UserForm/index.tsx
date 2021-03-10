@@ -3,50 +3,89 @@ import React, {
   FormEventHandler,
   FormHTMLAttributes,
   useCallback,
-  useRef,
+  useState,
 } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { Formik, FormikHelpers, Field } from 'formik';
+import { useLocation } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import { Container, FormPlatform } from './styles';
 
-// import { UserChoose } from '../FormPlatformPlans/interfaceFormPlatformPlans';
+import { UserChoose } from '../FormPlatformPlans/interfacesFormPlatformPlans';
 
-// interface UserData extends UserChoose {
-//   nomeUsuario: string;
-//   emailUsuario: string;
-//   cpfUsuario: string;
-//   dtNascUsuario: string;
-//   telefonecUsuario: string;
-// }
+interface UserData extends UserChoose {
+  values: {
+    nomeUsuario: string;
+    emailUsuario: string;
+    cpfUsuario: string;
+    dtNascUsuario: string;
+    telefoneUsuario: string;
+  };
+}
+
+interface Values {
+  nomeUsuario: string;
+  emailUsuario: string;
+  cpfUsuario: string;
+  dtNascUsuario: string;
+  telefoneUsuario: string;
+}
+
+const schema = Yup.object().shape({
+  nome: Yup.string().required(),
+  email: Yup.string().required(),
+  dt_nasc: Yup.string().required(),
+  cpf: Yup.string().required().max(11),
+  telefone: Yup.string().required(),
+});
 
 const UserForm: React.FC = () => {
-  // const [userData, setUserData] = useState<UserData>();
-  const formRef = useRef<HTMLFormElement | null>(null);
-  // const { state } = useLocation();
+  const [userData, setUserData] = useState<UserData>();
+  const { state } = useLocation<UserChoose>();
 
-  const handleSubmit = useCallback((event: FormEvent) => {
-    event.preventDefault();
-    const a = formRef.current;
+  const initialValues: Values = {
+    nomeUsuario: '',
+    emailUsuario: '',
+    dtNascUsuario: '',
+    cpfUsuario: '',
+    telefoneUsuario: '',
+  };
 
-    // const userData = { ...state };
-    // setUserData();
+  const handleUserDataSubmit = useCallback((values: Values) => {
+    const userDataLocation = { values, ...state };
+    setUserData(userDataLocation);
+    console.log(userData);
   }, []);
 
   return (
     <Container>
-      <FormPlatform ref={formRef} onSubmit={handleSubmit}>
-        <div>
-          <Input placeholder="Nome" />
-          <Input placeholder="Email" />
-          <Input placeholder="Data de Nascimento" />
-          <Input placeholder="CPF" />
-          <Input placeholder="Telefone" />
-        </div>
-        <button type="submit">Enviar</button>
-      </FormPlatform>
+      <Formik
+        key={1}
+        initialValues={initialValues}
+        onSubmit={(values: Values) => {
+          handleUserDataSubmit(values);
+        }}
+      >
+        {({ errors, handleSubmit }) => (
+          <FormPlatform onSubmit={handleSubmit}>
+            <Input name="nomeUsuario" type="type" placeholder="Nome" />
+            <Input name="emailUsuario" type="type" placeholder="Email" />
+            <Input
+              name="dtNascUsuario"
+              type="type"
+              placeholder="Data de Nascimento"
+            />
+            <Input name="cpfUsuario" type="type" placeholder="CPF" />
+            <Input name="telefoneUsuario" type="type" placeholder="Telefone" />
+            <Button disabled={false} type="submit">
+              Enviar
+            </Button>
+          </FormPlatform>
+        )}
+      </Formik>
     </Container>
   );
 };

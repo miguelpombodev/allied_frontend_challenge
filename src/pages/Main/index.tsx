@@ -8,15 +8,7 @@ import Button from '../../components/Button';
 
 import { Container, FormPlatform } from './styles';
 
-interface PlatformsAPIData {
-  plataformas: PlatformsAttributes[];
-}
-
-interface PlatformsAttributes {
-  sku: string;
-  nome: string;
-  descricao: string;
-}
+import { PlatformsAPIData, PlatformsAttributes } from './interfacesMain';
 
 const Main: React.FC = () => {
   const [platformsOptions, setPlatforms] = useState<PlatformsAttributes[]>();
@@ -58,14 +50,10 @@ const Main: React.FC = () => {
         </div>
       </FormPlatform>
       {!userChoose ? (
-        <Button variant="contained" disabled>
-          Próximo
-        </Button>
+        <Button disabled>Próximo</Button>
       ) : (
         <Link to={`/FormPlatformPlans/${userChoose}`}>
-          <Button variant="contained" color="secondary">
-            Próximo
-          </Button>
+          <Button disabled={false}>Próximo</Button>
         </Link>
       )}
     </Container>

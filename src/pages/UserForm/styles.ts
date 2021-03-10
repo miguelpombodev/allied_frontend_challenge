@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form } from 'formik';
 
 export const Container = styled.div`
   display: flex;
@@ -11,17 +12,10 @@ export const Container = styled.div`
   border-bottom: 1px solid #cccc;
 `;
 
-export const FormPlatform = styled.form`
+export const FormPlatform = styled(Form)`
   display: flex;
   margin: 15px 0 15px 0;
   flex-direction: column;
-
-  div {
-    display: flex;
-    flex-direction: column;
-
-    width: 100%;
-  }
 
   button {
     height: 50px;
