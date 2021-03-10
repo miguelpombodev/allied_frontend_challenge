@@ -2,13 +2,21 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Main from '../pages/Main';
+import FormPlatformPlans from '../pages/FormPlatformPlans';
+import UserForm from '../pages/UserForm';
 
-const Routes: React.FC = () => {
+const Router: React.FC = () => {
   return (
     <Switch>
-      <Route path="/" component={Main} />
+      <Route exact path="/" component={Main} />
+      <Route
+        path="/FormPlatformPlans/:planName"
+        component={FormPlatformPlans}
+      />
+      <Route path="/UserForm/:userData" component={UserForm} />
     </Switch>
   );
 };
 
-export default Routes;
+export default Router;
+//
