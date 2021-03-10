@@ -1,10 +1,8 @@
 import React, { InputHTMLAttributes } from 'react';
-import { FieldAttributes, FieldConfig } from 'formik';
 
 import { Input } from './styles';
 
-interface InputProps
-  extends FieldConfig<InputHTMLAttributes<HTMLInputElement>> {
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   type: string;
   placeholder: string;
 }
@@ -12,9 +10,10 @@ interface InputProps
 const InputComponent: React.FC<InputProps> = ({
   type,
   placeholder,
+  name,
   ...rest
 }) => {
-  return <Input type={type} placeholder={placeholder} {...rest} />;
+  return <Input name={name} type={type} placeholder={placeholder} {...rest} />;
 };
 
 export default InputComponent;

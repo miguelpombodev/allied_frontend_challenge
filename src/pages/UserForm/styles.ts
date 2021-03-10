@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Form } from 'formik';
 
 export const Container = styled.div`
   display: flex;
@@ -12,12 +11,17 @@ export const Container = styled.div`
   border-bottom: 1px solid #cccc;
 `;
 
-export const FormPlatform = styled(Form)`
+export const FormPlatform = styled.form`
   display: flex;
   margin: 15px 0 15px 0;
   flex-direction: column;
+  align-items: center;
 
   button {
     height: 50px;
   }
+`;
+
+export const ErrorMessage = styled.span`
+  color: red;
 `;
