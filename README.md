@@ -39,3 +39,5 @@ http://private-59658d-celulardireto2017.apiary-mock.com/planos/WF03 (wi-fi)
 ```
 
 Depois disso, faremos o cadastro do usuário na plataforma, pedindo as seguintes informações: **Nome, E-mail, Nascimento, CPF e Telefone**, e mostraremos todos os dados colhetados no console do navegador.
+
+Depois de cadastrar o usuário, voltamos para a tela inicial, listando todos os usuários salvos.
