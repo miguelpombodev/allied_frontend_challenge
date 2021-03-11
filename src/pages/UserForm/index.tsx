@@ -61,7 +61,7 @@ const UserForm: React.FC = () => {
           <Input
             name="dtNascUsuario"
             type="type"
-            placeholder="Data de Nascimento"
+            placeholder="Data de Nascimento - e.g: 30-06-2002"
             onBlur={formik.handleBlur}
           />
           {formik.touched.dtNascUsuario && formik.errors.dtNascUsuario ? (

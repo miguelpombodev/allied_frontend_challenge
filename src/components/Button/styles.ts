@@ -13,6 +13,8 @@ export const Button = styled.button<ButtonProps>`
   width: 100px;
   height: 40px;
 
+  margin-top: 10px;
+
   ${(props) =>
     props.disabled &&
     css`

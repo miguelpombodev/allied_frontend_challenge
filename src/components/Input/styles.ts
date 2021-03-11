@@ -5,9 +5,8 @@ export const Input = styled(Field)`
   width: 300px;
   height: 40px;
   border: none;
-  background-color: #cccc;
-  border-radius: 5px;
+  border-bottom: 1px solid #000;
   text-align: center;
 
-  margin-bottom: 15px;
+  margin-top: 13px;
 `;

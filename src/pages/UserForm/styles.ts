@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import TextField from '@material-ui/core/TextField';
 
 export const Container = styled.div`
   display: flex;
@@ -24,4 +25,8 @@ export const FormPlatform = styled.form`
 
 export const ErrorMessage = styled.span`
   color: red;
+`;
+
+export const datePicker = styled(TextField)`
+  margin-top: 10px;
 `;
