@@ -11,4 +11,12 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+
+  p, h1, h2, h3, h4 {
+      font-family: 'Roboto', sans-serif;
+    }
+
+  p {
+    font-size: 14px;
+  }
 `;

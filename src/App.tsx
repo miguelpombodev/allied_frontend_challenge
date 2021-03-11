@@ -3,15 +3,19 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Router from './routes';
 
+import { UsersSavedProvider } from './context/UsersSaved';
+
 import GlobalStyle from './styles/globals';
 
 const App: React.FC = () => {
   return (
     <>
       <GlobalStyle />
-      <BrowserRouter>
-        <Router />
-      </BrowserRouter>
+      <UsersSavedProvider>
+        <BrowserRouter>
+          <Router />
+        </BrowserRouter>
+      </UsersSavedProvider>
     </>
   );
 };

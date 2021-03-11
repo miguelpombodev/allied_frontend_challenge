@@ -3,7 +3,11 @@ import React from 'react';
 import Main from '../../pages/Main';
 
 describe('Main Page', () => {
-  it('banana', () => {
-    const result = render(<Main />);
+  it('should be able to acess the Main page', () => {
+    const { debug } = render(<Main />);
+
+    debug();
   });
+
+  // it('should be able to choose a radio button', () => {});
 });

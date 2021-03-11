@@ -45,7 +45,7 @@ const FormPlatformPlans: React.FC = () => {
       <FormPlatform>
         <RadioGroup>
           {platformPlans?.map((plat) => (
-            <RadioOptions>
+            <RadioOptions key={plat.sku}>
               <FormControlLabel
                 control={<Radio />}
                 value={plat.sku}
@@ -54,7 +54,7 @@ const FormPlatformPlans: React.FC = () => {
                   handleUserChoose(plat);
                 }}
               />
-              <div>
+              <div key={plat.franquia}>
                 <span>
                   <p>Franquia:</p> <p>{plat.franquia}</p>
                 </span>

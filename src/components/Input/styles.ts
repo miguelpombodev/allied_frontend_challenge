@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Field } from 'formik';
 
+export const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const Input = styled(Field)`
   width: 300px;
   height: 40px;

@@ -1,6 +1,13 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useContext } from 'react';
 import { useFormik, FormikProvider } from 'formik';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
+import {
+  MdPerson,
+  MdEmail,
+  MdDateRange,
+  MdLock,
+  MdPhone,
+} from 'react-icons/md';
 
 import Button from '../../components/Button';
 import Input from '../../components/Input';
@@ -11,9 +18,14 @@ import { UserData, Values, UserChooseData } from './interfacesUserForm';
 
 import schema from './yupSchema';
 
+import { UsersSavedContext } from '../../context/UsersSaved';
+
 const UserForm: React.FC = () => {
   const [userData, setUserData] = useState<UserData>();
   const { state } = useLocation<UserChooseData>();
+  const history = useHistory();
+
+  const { addUsersSaved } = useContext(UsersSavedContext);
 
   const initialValues: Values = {
     nomeUsuario: '',
@@ -28,6 +40,8 @@ const UserForm: React.FC = () => {
 
     setUserData(userDataLocation);
     console.log(userDataLocation);
+    addUsersSaved(values, state.sku, state.planName);
+    history.push('/');
   }, []);
 
   const formik = useFormik<Values>({
@@ -41,6 +55,7 @@ const UserForm: React.FC = () => {
       <FormikProvider value={formik}>
         <FormPlatform onSubmit={formik.handleSubmit}>
           <Input
+            icon={MdPerson}
             name="nomeUsuario"
             type="type"
             placeholder="Nome"
@@ -50,6 +65,7 @@ const UserForm: React.FC = () => {
             <ErrorMessage>{formik.errors.nomeUsuario}</ErrorMessage>
           ) : null}
           <Input
+            icon={MdEmail}
             name="emailUsuario"
             type="type"
             placeholder="Email"
@@ -59,6 +75,7 @@ const UserForm: React.FC = () => {
             <ErrorMessage>{formik.errors.emailUsuario}</ErrorMessage>
           ) : null}
           <Input
+            icon={MdDateRange}
             name="dtNascUsuario"
             type="type"
             placeholder="Data de Nascimento - e.g: 30-06-2002"
@@ -68,6 +85,7 @@ const UserForm: React.FC = () => {
             <ErrorMessage>{formik.errors.dtNascUsuario}</ErrorMessage>
           ) : null}
           <Input
+            icon={MdLock}
             name="cpfUsuario"
             type="type"
             placeholder="CPF - e.g: 12345678901"
@@ -77,6 +95,7 @@ const UserForm: React.FC = () => {
             <ErrorMessage>{formik.errors.cpfUsuario}</ErrorMessage>
           ) : null}
           <Input
+            icon={MdPhone}
             name="telefoneUsuario"
             type="type"
             placeholder="Telefone - e.g: 21123456789"
