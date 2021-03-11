@@ -70,7 +70,7 @@ const UserForm: React.FC = () => {
           <Input
             name="cpfUsuario"
             type="type"
-            placeholder="CPF"
+            placeholder="CPF - e.g: 12345678901"
             onBlur={formik.handleBlur}
           />
           {formik.touched.cpfUsuario && formik.errors.cpfUsuario ? (
@@ -79,7 +79,7 @@ const UserForm: React.FC = () => {
           <Input
             name="telefoneUsuario"
             type="type"
-            placeholder="Telefone"
+            placeholder="Telefone - e.g: 21123456789"
             onBlur={formik.handleBlur}
           />
           {formik.touched.telefoneUsuario && formik.errors.telefoneUsuario ? (
